@@ -2,37 +2,30 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="Revisiting Multi-Modal LLM Evaluation"/>
-  <meta property="og:description" content="Revisiting Multi-Modal LLM Evaluation"/>
-  <meta property="og:url" content="https://kevinlujian.github.io/MLLM_Evaluations"/>
+  <meta name="description" content="Improving MLLMs with Continual Learning">
+  <meta property="og:title" content="Improving Multimodal Large Language Models Using Continual Learning"/>
+  <meta property="og:description" content="This study investigates using continual learning to mitigate linguistic forgetting in Multimodal Large Language Models (MLLMs), enhancing visual understanding while preserving language skills."/>
+  <meta property="og:url" content="YOUR_URL_HERE"/>
 
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/images/banner/banner_output_high_res.png" />
+  <meta property="og:image" content="static/images/banner/mllm_cl_big_webpage.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   
-  <meta name="twitter:title" content="Revisiting Multi-Modal LLM Evaluation">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <meta name="twitter:image" content="static/images/University_of_Rochester_seal.png">
-  <meta name="twitter:card" content="static/images/University_of_Rochester_seal.png">
+  <meta name="twitter:title" content="Improving Multimodal Large Language Models Using Continual Learning">
+  <meta name="twitter:description" content="This study investigates using continual learning to mitigate linguistic forgetting in Multimodal Large Language Models (MLLMs), enhancing visual understanding while preserving language skills.">
+  <meta name="twitter:image" content="static/images/banner/mllm_cl_big_webpage.png">
+  <meta name="twitter:card" content="summary_large_image">
   
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="multi-modal LLM, LLM, evaluation, tallqa, dvqa, tduic, vqdv1">
+  <meta name="keywords" content="Continual Learning, Multimodal Large Language Models, MLLM, LLM, Catastrophic Forgetting, LLaVA">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-  <title>Revisiting Multi-Modal LLM Evaluation</title>
-  <!-- Favicon Links -->
+  <title>Improving MLLMs with Continual Learning</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="static/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
   
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
@@ -41,22 +34,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:wght@400;700&display=swap" rel="stylesheet">
+  
   <style>
-    h2.title {
+    .hero .title, .hero .subtitle, .title, .subtitle {
       font-family: 'Latin Modern Roman', serif;
-      font-weight: 700;
-      font-size: 2.5rem; /* Adjust the size as needed */
-      line-height: 1.2;
     }
   </style>
-    <style>
-      h1.title {
-        font-family: 'Latin Modern Roman', serif;
-        font-weight: 700;
-        font-size: 2.5rem; /* Adjust the size as needed */
-        line-height: 1.2;
-      }
-    </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -66,7 +49,7 @@
   <script src="static/js/index.js"></script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+  </script>
 </head>
 <body>
 
@@ -75,67 +58,69 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Revisiting Multi-Modal LLM Evaluation</h1>
+          <h1 class="title is-1 publication-title">Improving Multimodal Large Language Models Using Continual Learning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="/index.html" target="_blank">Jian Lu</a><sup>* 1</sup>,
+              <a href="https://www.cs.rochester.edu/u/ssrivas9/" target="_blank"><b>Shikhar Srivastava</b></a><sup>1*</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.cs.rochester.edu/u/ssrivas9/" target="_blank">Shikhar Srivastava</a><sup>1</sup>,
+              <a href="https://yousuf907.github.io/" target="_blank"><b>Md Yousuf Harun</b></a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.cs.rochester.edu/u/jchen175/" target="_blank">Junyu Chen</a><sup>1</sup>,
+              <a href="https://robikshrestha.com" target="_blank"><b>Robik Shrestha</b></a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://robikshrestha.com" target="_blank">Robik Shrestha</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.manojacharya.com" target="_blank">Manoj Acharya</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://kushalkafle.com" target="_blank">Kushal Kafle</a><sup>3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://chriskanan.com" target="_blank">Christopher Kanan</a><sup>1</sup>
+              <a href="https://chriskanan.com" target="_blank"><b>Christopher Kanan</b></a><sup>1</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> University of Rochester</span>
+            <span class="author-block"><sup>2</sup> Rochester Institute of Technology</span>
+          </div>
+          <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
             <span class="author-block">
-              <sup>1</sup>University of Rochester
-              <sup>2</sup>SRI International
-              <sup>3</sup>Adobe
-              <!--<br>Neurips Workshop 2024</span>-->
-              <span class="eql-cntrb"><small><br><sup>*</sup>jlu59@u.rochester.edu</small></span>
+                <small><sup>*</sup>Corresponding author: <a href="mailto:shikhar.srivastava@rochester.edu">shikhar.srivastava@rochester.edu</a></small>
             </span>
           </div>
-        </div>
-        </div>
+
+          <div class="is-flex is-justify-content-center is-flex-wrap-wrap" style="gap: 1rem; margin-top: 1.5rem;">
+            <div class="tags has-addons">
+              <span class="tag is-dark is-medium">
+                <span class="icon"><i class="fas fa-award"></i></span>
+                <span>CoLLAs 2025</span>
+              </span>
+              <span class="tag is-light is-medium">Conference</span>
+            </div>
+            <div class="tags has-addons">
+              <span class="tag is-dark is-medium">
+                <span class="icon"><i class="fas fa-award"></i></span>
+                <span>SCFM, NeurIPS 2024</span>
+              </span>
+              <span class="tag is-light is-medium">Workshop</span>
+            </div>
           </div>
+
           <div class="column has-text-centered">
             <div class="publication-links">
-
-              <!-- <span class="link-block">
-                <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+               <span class="link-block">
+                <a href="https://arxiv.org/pdf/2402.16829" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
-              </span> -->
-              <!-- Github link -->
+              </span>
               <span class="link-block">
-                <a href="https://github.com/KevinLuJian/MLLM_supplemental" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/cvcontinuity/linguistic_erasure" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                 </a>
               </span>
-              <!-- ArXiv abstract Link -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2408.05334" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2402.16829" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
-
             </div>
           </div>
         </div>
@@ -146,196 +131,43 @@
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <img class="rounded" src="static/images/banner/banner_output_high_res.png" style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
+    <img class="rounded" src="static/images/banner/mllm_cl_big_webpage.png" alt="A diagram showing how continual learning can be used to improve multimodal large language models by mitigating catastrophic forgetting of linguistic abilities." style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
   </div>
 </section>
 
-<!-- Main Contributions
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered"></div>
-      <h2 class="title is-2">Main Contributions</h2>
-      <div class="content">
-        <ul>
-          <li> We create new 'slim' versions of the datasets suitable for zero-shot MLLM evaluation, and they are integrated into the widely-used LAVIS toolbox, facilitating the rapid and comprehensive assessment of future MLLMs. </li>
-          <li> We provide a robust evaluation of MLLMs on our VQA datasets, revealing previously unreported weaknesses via fine-grained analysis across various question types and tasks. </li>
-          <li> Using VQDv1, we challenge MLLMs' visual grounding capabilities by requiring them to engage in complex visual reasoning to identify multiple objects beyond the limitations of single-object referring expression datasets. </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- Introduction -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <!-- <h2 class="title is-2">Contributions</h2> -->
+        <h2 class="title is-2 has-text-centered">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- <p>With the advent of multi-modal large language models (MLLMs), datasets used for visual question answering (VQA) and referring expression comprehension have seen a resurgence. However, the most popular datasets used to evaluate MLLMs are some of the earliest ones created, and they have many known problems, including extreme bias, spurious correlations, and an inability to permit fine-grained analysis.</p> -->
-          <p>In this paper, we pioneer evaluating recent MLLMs (LLaVA-1.5, LLaVA-NeXT, BLIP2, InstructBLIP, GPT-4V, and GPT-4o) on datasets designed to address weaknesses, such as <i>extreme bias, spurious correlations and lack of fine-grained analysis</i> in earlier datasets like VQAv2 and RefCOCO.
-          <br>We assess four VQA datasets:
-            <ol>
-              <li><a href="#vqdv1"><strong style="color: blue;">VQDv1</strong></a>, which requires identifying all image regions that satisfy a given query. </li>
-              <li><a href="#tallyqa"><strong style="color: blue;">TallyQA</strong></a>, which has simple and complex counting questions, and</li>
-              <li><a href="#tdiuc"><strong style="color: blue;">TDIUC</strong></a>, which permits fine-grained analysis on 12 question types,</li>
-              <li><a href="#dvqa"><strong style="color: blue;">DVQA</strong></a>, which requires optical character recognition for chart understanding.</li>
-            </ol>
-          </p>
-          <p>Our experiments reveal the <i>weaknesses of today's MLLMs</i> that have not previously been reported. Our code is integrated into a fork of the widely used LAVIS framework for MLLM evaluation, enabling the rapid assessment of future MLLMs.</p>
+            <p>
+            Generative large language models (LLMs) exhibit impressive capabilities, which can be further augmented by integrating a pre-trained vision model into the original LLM to create a multimodal LLM (MLLM). However, this integration often significantly decreases performance on natural language understanding and generation tasks, compared to the original LLM. This study investigates this issue using the LLaVA MLLM, treating the integration as a continual learning problem. We evaluate five continual learning methods to mitigate forgetting and identify a technique that enhances visual understanding while minimizing linguistic performance loss. Our approach reduces linguistic performance degradation by up to 15% over the LLaVA recipe, while maintaining high multimodal accuracy. We also demonstrate the robustness of our method through continual learning on a sequence of vision-language tasks, effectively preserving linguistic skills while acquiring new multimodal capabilities.
+            </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Motivations Section -->
-
-
-
-<!--Datasets Start here-->
-<section id="vqdv1" class="section hero">
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-2">VQDv1</h2>
-
-        <div class="content has-text-left">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2 has-text-centered">Motivation 🤔</h2>
+        <div class="content has-text-justified">
           <p>
-            <b style="color: blue;">Description</b> 🗂️: VQDv1 challenges models to generate multiple bounding boxes 📦, not just one! Unlike typical datasets, queries in VQDv1 can result in 0 to N bounding boxes, testing general detection skills 🔍. This adds an extra layer of difficulty.
+          A practical MLLM must excel in both text-only and vision-language tasks, as users often switch between these modalities in real-world interactions. Strong linguistic understanding is crucial even for multimodal prompts. We frame this challenge as a <strong>Continual Learning (CL)</strong> problem to mitigate the "catastrophic forgetting" of language skills that occurs when adding visual capabilities. The significant distributional shift from text-only to multimodal contexts makes CL a natural fit for preserving the model's original linguistic prowess.
           </p>
-          <center>
-            <figure>
-              <img src="static/images/examples/VQDv1.png" alt="Example Image" width="100%"/>
-              <figcaption style="font-size: 0.75em; color: grey;">Example images of VQDv1 with multiple bounding boxes.</figcaption>
-            </figure>
-          </center>
           <p>
-            <b style="color: blue;">Results</b> 📊: All models show decreased Recall as the number of bounding boxes 📦 increases. This indicates that models struggle to identify multiple objects matching the query. 🤖🔍
+          Furthermore, a robust system must continuously learn new multimodal skills without forgetting prior linguistic or visual knowledge. We model this by treating the LLM's initial text training as the first task, followed by a sequence of new vision-language tasks. This allows us to evaluate the incremental acquisition of multimodal skills while ensuring core linguistic abilities are preserved, leading to more versatile and reliable MLLMs.
           </p>
-          <center>
-            <figure>
-              <img src="static/images/tables/micro_f1_scores_comparison.png" alt="VQDv1 Result Image" style="margin-bottom: 10px;" width="80%">
-              <figcaption style="font-size: 0.75em; color: grey;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Comparison of Multi-Modal LLMs on VQDv1. MGM refers to MiniGemini 7B, LLaVA-OV is LLaVA OneVision, L is LLaVA 1.5 and L-NeXT is LLaVA-NeXT. </figcaption>
-              <figcaption style="font-size: 0.9em; color: grey;"> The large gap from optimal performance on VQDv1, suggests a major limitation of today's LLMs.</figcaption>
-              <img src="static/images/graphs/vqd-precision.png" alt="VQDv1 Performance Graph" style="margin-top: 10px;" width="45%"><img src="static/images/graphs/vqd-recall.png" alt="VQDv1 Performance Graph" style="margin-top: 10px;" width="45%">
-              <figcaption style="font-size: 0.75em; color: grey;">Precision and recall graphs for VQDv1.</figcaption>
-              <figcaption style="font-size: 0.9em; color: grey;"> This trend suggests that increasing the number of grounding objects challenges the models' detection capabilities, potentially due to limitations in how they interpret contextual information within visual scenes. </figcaption>
-            </figure>
-          </center>          
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="tallyqa" class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-2">TallyQA</h2>
-
-        <div class="content has-text-left">
-          <p>
-            <b style="color: blue;">Description</b> 🔢: TallyQA tests models' counting skills 🔢. It includes simple questions on object detection and complex ones needing advanced reasoning, like pose estimation ("How many dogs are sitting?") and positional reasoning ("How many dogs are in front of the white building?"). 🏢🔍
-          </p>
-          <center>
-            <figure>
-              <img src="static/images/examples/tallyQA.png" alt="Example Image" width="100%"/>
-              <figcaption style="font-size: 0.75em; color: grey;">Example images from TallyQA showing various counting challenges.</figcaption>
-            </figure>
-          </center>
-          <p>
-            <b style="color: blue;">Results</b> 📊: TallyQA includes simple and complex counting questions 🔢. Some models, like BLIP2, excel at simple questions but struggle with complex ones. For example, BLIP2 matches GPT-4 on simple tasks but drops significantly on complex questions requiring advanced reasoning, like pose estimation 🕺 and positional reasoning 📍.
-          </p>
-          <center>
-            <figure>
-              <img src="static/images/tables/tallyqa_table.png" alt="TallyQA Result Image" style="margin-bottom: 10px;" width="60%">
-              <figcaption style="font-size: 0.75em; color: grey;">Results on TallyQA. For Acc., best performers based on paired asymptotic McNemar tests (α = 0.05) are in bold. For RMSE, the highest value is bolded. For comparison, the result from SMoLA is the current best on TallyQA.</figcaption>
-              
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px;">
-                  <figure style="width: 50%; text-align: center; margin: 0; padding: 0;">
-                      <img src="static/images/graphs/accuracy_distribution_simple.png" alt="TallyQA Simple Counting Performance Graph" width="100%">
-                      <figcaption style="font-size: 0.88em; color: black; margin-top: 0px;">TallyQA Simple</figcaption>
-                  </figure>
-                  <figure style="width: 50%; text-align: center; margin: 0; padding: 0;">
-                      <img src="static/images/graphs/accuracy_distribution_complex.png" alt="TallyQA Complex Counting Performance Graph" width="100%">
-                      <figcaption style="font-size: 0.88em; color: black; margin-top: 0px;">TallyQA Complex</figcaption>
-                  </figure>
-              </div>
-              
-              <figcaption style="font-size: 0.9em; color: grey;">Accuracy distribution by correct answer, for simple (left Fig.) and complex (right Fig.) counting questions in TallyQA. This suggests the necessity of incorporating more complex counting questions in the evaluation of visual reasoning models.</figcaption>
-          </figure>
-          </center>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tdiuc" class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-2">TDIUC</h2>
-
-        <div class="content has-text-left">
-          <p>
-            <b style="color: blue;">Description</b> 🎯: TDIUC tests models' versatility across 12 tasks, including object 🏷️, attribute 🔖, and activity recognition 🏃, as well as overall scene understanding 🌆. The meaningful categories of question types allow fine-grain analysis of models' abilities, highlighting specific strengths and weaknesses. 
-          </p>
-          <center>
-            <figure>
-              <img src="static/images/examples/TDIUC.png" alt="Example Image" width="100%"/>
-              <figcaption style="font-size: 0.75em; color: grey;">Example images from TDIUC showing various question types.</figcaption>
-            </figure>
-          </center>
-          <p>
-            <b style="color: blue;">Results</b> 📊: TDIUC results provide detailed performance metrics for each model on different question types. Models show varying strengths and weaknesses across these types. Key takeaways: all models struggle with positional reasoning 📍. LLaVA-NeXT outperforms in almost all question types, even surpassing the previous state-of-the-art VQA algorithm, MuRel.
-          </p>
-          <center>
-            <figure>
-              <img src="static/images/tables/tdiuc_table.png" alt="TDIUC Result Image" style="margin-bottom: 10px;" width="85%">
-              <figcaption style="font-size: 0.75em; color: grey;">Accuracy on TDIUC for each question type. Best performers based on paired asymptotic McNemar tests (α = 0.05) are in bold. For comparison, MuRel is the previous best result from training on TDIUC.</figcaption>
-            </figure>
-          </center>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="dvqa" class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-2">DVQA</h2>
-
-        <div class="content has-text-left">
-          <p>
-            <b style="color: blue;">Description</b> 📊: DVQA tests models' ability to interpret and analyze visual data in chart form 📊. It requires OCR skills 🔡 and handling unusual words found in charts. The synthetically generated images 🖥️ pose unique challenges compared to natural images 🌳.
-          </p>
-          <center>
-            <figure>
-              <img src="static/images/examples/DVQA.png" alt="Example Image" width="100%"/>
-              <figcaption style="font-size: 0.75em; color: grey;">Example images from DVQA showing various chart types.</figcaption>
-            </figure>
-          </center>
-          <p>
-            <b style="color: blue;">Results</b> 📊: DVQA results show that while some models perform well on natural images 🌳, they struggle with synthetic images 🖥️. The DVQA dataset is entirely synthetic, with bars in random colors and styles. Most models especially struggle with reasoning and data retrieval questions in DVQA. 🧠🔍          </p>
-          <center>
-            <figure>
-              <img src="static/images/tables/dvqa_table.png" alt="DVQA Result Image" style="margin-bottom: 10px;" width="60%">
-              <figcaption style="font-size: 0.75em; color: grey;">Percentage (%) accuracy results on DVQA. Best performers based on paired asymptotic McNemar tests (α = 0.05) are in bold. For comparison, PReFIL and Human results correspond to performance on Test-Novel, where PReFIL uses Improved OCR. PReFIL is a DVQA system trained on DVQA’s training set.</figcaption>
-            </figure>
-          </center>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- License -->
 <footer class="footer">
   <div class="container">
     <div class="columns is-centered">
@@ -349,10 +181,6 @@
     </div>
   </div>
 </footer>
-
-<!-- Statcounter tracking code -->
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-<!-- End of Statcounter Code -->
 
 </body>
 </html>
