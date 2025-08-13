@@ -39,6 +39,16 @@
     .hero .title, .hero .subtitle, .title, .subtitle {
       font-family: 'Latin Modern Roman', serif;
     }
+    
+    /* Reduce spacing between hero sections */
+    .hero {
+      padding-bottom: 0;
+    }
+    
+    .hero.teaser {
+      padding-top: 0;
+      margin-top: -3rem;
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -100,7 +110,6 @@
                <span class="tag is-light is-medium">Workshop</span>
              </div>
            </div>
-
               <div class="column has-text-centered">
               <div class="publication-links">
                 <span class="link-block">
@@ -121,7 +130,6 @@
                     <span>Presentation</span>
                   </a>
                 </span>
-
             </div>
           </div>
         </div>
@@ -129,10 +137,9 @@
     </div>
   </div>
 </section>
-
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <img class="rounded" src="static/images/banner/mllm_cl_big_webpage.png" alt="A diagram showing how continual learning can be used to improve multimodal large language models by mitigating catastrophic forgetting of linguistic abilities." style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
+    <img class="rounded" src="static/images/banner/mllm_cl_big_webpage.png" alt="A diagram showing how continual learning can be used to improve multimodal large language models by mitigating catastrophic forgetting of linguistic abilities." style="display: block; margin-left: auto; margin-right: auto; width: 95%;">
   </div>
 </section>
 
