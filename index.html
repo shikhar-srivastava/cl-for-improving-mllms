@@ -49,16 +49,119 @@
       padding-top: 0;
       margin-top: -3rem;
     }
+
+    /* Custom Carousel Styles */
+    .custom-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+      min-height: 300px;
+    }
+
+    .carousel-slide {
+      display: none;
+      width: 100%;
+      padding: 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding: 10px 0;
+    }
+
+    .carousel-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background-color: #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-indicator.active {
+      background-color: #3273dc;
+    }
+
+    .carousel-indicator:hover {
+      background-color: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .carousel-slide {
+        padding: 15px;
+      }
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+  <script src="static/js/bulma-carousel.min.js" onload="console.log('Bulma carousel loaded')"></script>
+  <script src="static/js/bulma-slider.min.js" onload="console.log('Bulma slider loaded')"></script>
+  <script src="static/js/index.js" defer></script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Debugging helper script (can be removed in production) -->
+  <script>
+    // Debug helper - can be removed in production
+    window.debugCarousels = function() {
+      console.log('=== CUSTOM CAROUSEL DEBUG INFO ===');
+      console.log('jQuery loaded:', typeof $ !== 'undefined');
+      console.log('CustomCarousel class available:', typeof CustomCarousel !== 'undefined');
+      console.log('Custom carousel elements found:', document.querySelectorAll('.custom-carousel').length);
+      console.log('Manual reinitialize available:', typeof window.reinitializeCarousels === 'function');
+      
+      // Check each custom carousel individually
+      document.querySelectorAll('.custom-carousel').forEach(function(el, index) {
+        var slides = el.querySelectorAll('.carousel-slide');
+        var indicators = el.querySelectorAll('.carousel-indicator');
+        var activeSlides = el.querySelectorAll('.carousel-slide.active');
+        var activeIndicators = el.querySelectorAll('.carousel-indicator.active');
+        
+        console.log('Custom Carousel #' + (index + 1) + ' (ID: ' + el.id + '):', {
+          totalSlides: slides.length,
+          totalIndicators: indicators.length,
+          activeSlides: activeSlides.length,
+          activeIndicators: activeIndicators.length,
+          isVisible: el.offsetWidth > 0 && el.offsetHeight > 0,
+          hasContent: el.querySelector('img') !== null
+        });
+      });
+      console.log('=== END DEBUG INFO ===');
+      
+      return 'Debug info logged to console. Check browser dev tools.';
+    };
+    
+    // Auto-debug on load (remove in production)
+    window.addEventListener('load', function() {
+      setTimeout(window.debugCarousels, 2000);
+    });
   </script>
 </head>
 <body>
@@ -245,26 +348,32 @@
 
         <!-- Linguistic Forgetting Analysis Carousel -->
         <div style="margin: 2rem 0;">
-          <div id="carousel-1" class="carousel results-carousel">
-            <div class="item has-text-centered">
-              <figure class="image">
-                <img src="viz/linguistic_forgetting_figure.png" 
-                     alt="Linguistic forgetting analysis across different base LLMs" 
-                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 100%; height: auto;">
-              </figure>
-              <p class="has-text-grey is-size-6" style="margin-top: 0.75rem; font-style: italic; font-weight: 500;">
-                Linguistic Forgetting in LLaVA with varying base LLMs
-              </p>
+          <div class="custom-carousel" id="carousel-1">
+            <div class="carousel-container">
+              <div class="carousel-slide active has-text-centered">
+                <figure class="image">
+                  <img src="viz/linguistic_forgetting_figure.png" 
+                       alt="Linguistic forgetting analysis across different base LLMs" 
+                       style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 100%; height: auto;">
+                </figure>
+                <p class="has-text-grey is-size-6" style="margin-top: 0.75rem; font-style: italic; font-weight: 500;">
+                  Linguistic Forgetting in LLaVA with varying base LLMs
+                </p>
+              </div>
+              <div class="carousel-slide has-text-centered">
+                <figure class="image" style="display: flex; justify-content: center;">
+                  <img src="viz/linguistic_forgetting_table.png" 
+                       alt="Table showing NLG and NLU forgetting results across different base LLMs" 
+                       style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 80%; height: auto;">
+                </figure>
+                <p class="has-text-grey is-size-6" style="margin-top: 0.75rem; font-style: italic; font-weight: 500;">
+                  NLU and NLG forgetting across LLaVA with varying base LLMs.
+                </p>
+              </div>
             </div>
-            <div class="item has-text-centered">
-              <figure class="image" style="display: flex; justify-content: center;">
-                <img src="viz/linguistic_forgetting_table.png" 
-                     alt="Table showing NLG and NLU forgetting results across different base LLMs" 
-                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 80%; height: auto;">
-              </figure>
-              <p class="has-text-grey is-size-6" style="margin-top: 0.75rem; font-style: italic; font-weight: 500;">
-                NLU and NLG forgetting across LLaVA with varying base LLMs.
-              </p>
+            <div class="carousel-indicators">
+              <button class="carousel-indicator active" data-slide="0"></button>
+              <button class="carousel-indicator" data-slide="1"></button>
             </div>
           </div>
         </div>
@@ -342,16 +451,22 @@
           </div>
 
           <!-- Image Carousel -->
-          <div id="carousel-2" class="carousel results-carousel">
-            <div class="item">
-              <img src="viz/linguistic_forgetting_with_scale.png"
-                   alt="Linguistic forgetting comparison across different model scales"
-                   style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+          <div class="custom-carousel" id="carousel-2">
+            <div class="carousel-container">
+              <div class="carousel-slide active has-text-centered">
+                <img src="viz/linguistic_forgetting_with_scale.png"
+                     alt="Linguistic forgetting comparison across different model scales"
+                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+              </div>
+              <div class="carousel-slide has-text-centered">
+                <img src="viz/vl_performance_with_scale.png"
+                     alt="Vision-language performance comparison across different model scales"
+                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+              </div>
             </div>
-            <div class="item">
-              <img src="viz/vl_performance_with_scale.png"
-                   alt="Vision-language performance comparison across different model scales"
-                   style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+            <div class="carousel-indicators">
+              <button class="carousel-indicator active" data-slide="0"></button>
+              <button class="carousel-indicator" data-slide="1"></button>
             </div>
           </div>
         </div>
@@ -426,16 +541,22 @@
           </div>
 
           <!-- Continual Learning Results Carousel -->
-          <div id="carousel-3" class="carousel results-carousel">
-            <div class="item">
-              <img src="viz/linguistic_forgetting_with_scale.png"
-                   alt="Linguistic forgetting comparison across different model scales"
-                   style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+          <div class="custom-carousel" id="carousel-3">
+            <div class="carousel-container">
+              <div class="carousel-slide active has-text-centered">
+                <img src="viz/linguistic_forgetting_with_scale.png"
+                     alt="Linguistic forgetting comparison across different model scales"
+                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+              </div>
+              <div class="carousel-slide has-text-centered">
+                <img src="viz/task_avg_linguistic_forgetting_with_scale.png"
+                     alt="Task-averaged linguistic forgetting comparison across different model scales"
+                     style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+              </div>
             </div>
-            <div class="item">
-              <img src="viz/task_avg_linguistic_forgetting_with_scale.png"
-                   alt="Task-averaged linguistic forgetting comparison across different model scales"
-                   style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;">
+            <div class="carousel-indicators">
+              <button class="carousel-indicator active" data-slide="0"></button>
+              <button class="carousel-indicator" data-slide="1"></button>
             </div>
           </div>
         </div>
